@@ -159,7 +159,7 @@ class TestOrderListSearch(WebTestCase):
         ),
         (
             {'voucher': 'abcd1234'},
-            ['Used voucher code "abcd1234"']
+            ['Used coupon code "abcd1234"']
         ),
         (
             {'payment_method': 'visa'},
@@ -189,7 +189,7 @@ class TestOrderListSearch(WebTestCase):
                 'Includes an item with UPC "upc_abcd1234"',
                 'Includes an item with partner SKU "partner_avcd1234"',
                 'Placed between 2014-01-02 and 2015-03-04',
-                'Used voucher code "voucher_abcd1234"',
+                'Used coupon code "voucher_abcd1234"',
                 'Paid using Visa',
                 'Order status is A',
             ]
@@ -212,7 +212,7 @@ class TestOrderListSearch(WebTestCase):
                 el.text.strip() for el in
                 response.html.select('.search-filter-list .label')
             ]
-            assert applied_filters == expected_filters
+            self.assertEqual(applied_filters, expected_filters)
 
 
 class TestOrderDetailPage(WebTestCase):
